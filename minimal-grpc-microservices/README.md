@@ -33,3 +33,7 @@ protoc \
   --go-grpc_opt=paths=source_relative \
   proto/user/*.proto
 ```
+
+```
+make proto-gen
+```
