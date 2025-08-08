@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	pb "user-service/proto"
+	pb "user-service/pb/user"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

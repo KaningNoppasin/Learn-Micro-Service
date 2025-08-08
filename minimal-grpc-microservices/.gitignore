@@ -1,2 +1,1 @@
-
-*/proto/*.pb.go
+*/pb/*/*.pb.go

@@ -17,6 +17,19 @@
 
 ## Generate gRPC Code
 ```
-protoc --go_out=./api-gateway --go-grpc_out=./api-gateway api-gateway/proto/*.proto
-protoc --go_out=./user-service --go-grpc_out=./user-service user-service/proto/*.proto
+protoc \
+  --proto_path=proto \
+  --go_out=./api-gateway/pb \
+  --go_opt=paths=source_relative \
+  --go-grpc_out=./api-gateway/pb \
+  --go-grpc_opt=paths=source_relative \
+  proto/user/*.proto
+
+protoc \
+  --proto_path=proto \
+  --go_out=./user-service/pb \
+  --go_opt=paths=source_relative \
+  --go-grpc_out=./user-service/pb \
+  --go-grpc_opt=paths=source_relative \
+  proto/user/*.proto
 ```

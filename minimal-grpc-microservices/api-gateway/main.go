@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	pb "api-gateway/proto"
+	pb "api-gateway/pb/user"
 
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
