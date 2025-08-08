@@ -15,25 +15,28 @@
 - Logging: Basic logging for debugging and monitoring
 
 
-## Generate gRPC Code
+## Setup
 ```
-protoc \
-  --proto_path=proto \
-  --go_out=./api-gateway/pb \
-  --go_opt=paths=source_relative \
-  --go-grpc_out=./api-gateway/pb \
-  --go-grpc_opt=paths=source_relative \
-  proto/user/*.proto
-
-protoc \
-  --proto_path=proto \
-  --go_out=./user-service/pb \
-  --go_opt=paths=source_relative \
-  --go-grpc_out=./user-service/pb \
-  --go-grpc_opt=paths=source_relative \
-  proto/user/*.proto
+make setup
 ```
 
+# Development
 ```
-make proto-gen
+make docker-dev
+```
+
+# Production
+```
+make docker-build
+make docker-up
+```
+
+# View logs
+```
+make docker-logs
+```
+
+# Clean up
+```
+make clean
 ```

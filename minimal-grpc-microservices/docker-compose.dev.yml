@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+    user-service:
+        build:
+            context: ./user-service
+            dockerfile: Dockerfile
+            target: builder # Stop at builder stage for development
+        container_name: user-service-dev
+        ports:
+            - '50051:50051'
+        volumes:
+            - ./user-service:/app
+            - /app/vendor
+        networks:
+            - grpc-network
+        command: go run main.go
+        environment:
+            - PORT=50051
+            - GO_ENV=development
+
+    api-gateway:
+        build:
+            context: ./api-gateway
+            dockerfile: Dockerfile
+            target: builder
+        container_name: api-gateway-dev
+        ports:
+            - '8080:8080'
+        volumes:
+            - ./api-gateway:/app
+            - /app/vendor
+        networks:
+            - grpc-network
+        command: go run main.go
+        environment:
+            - PORT=8080
+            - USER_SERVICE_ADDR=user-service:50051
+            - GO_ENV=development
+        depends_on:
+            - user-service
+
+networks:
+    grpc-network:
+        driver: bridge
