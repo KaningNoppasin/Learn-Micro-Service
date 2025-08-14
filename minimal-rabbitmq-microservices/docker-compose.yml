@@ -1,0 +1,38 @@
+# version: '3.8'
+services:
+    rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+            - '5672:5672' # AMQP port
+            - '15672:15672' # Management UI
+        environment:
+            RABBITMQ_DEFAULT_USER: guest
+            RABBITMQ_DEFAULT_PASS: guest
+
+    # order-service:
+    #     build: .
+    #     command: go run services/order-service/main.go
+    #     ports:
+    #         - '8081:8080'
+    #     environment:
+    #         RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    #         SERVER_PORT: '8080'
+    #     depends_on:
+    #         - rabbitmq
+    #     volumes:
+    #         - .:/app
+    #     working_dir: /app
+
+    # notification-service:
+    #     build: .
+    #     command: go run services/notification-service/main.go
+    #     ports:
+    #         - '8082:8080'
+    #     environment:
+    #         RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+    #         SERVER_PORT: '8080'
+    #     depends_on:
+    #         - rabbitmq
+    #     volumes:
+    #         - .:/app
+    #     working_dir: /app
